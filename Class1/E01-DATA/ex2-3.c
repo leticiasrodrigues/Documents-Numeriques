@@ -15,12 +15,33 @@ int main (int argc, char *argv[])
 			} else {
 				char buff[255];
 				int sum = 0;
+				int no_errors = 0;
 				while(fscanf(fp, "%s", buff) != EOF){
-					sum+=atoi(buff);
+					if(verify_format(buff)==1){
+						sum+=atoi(buff);
+					} else {
+						no_errors = 1;
+						break;
+					}
 				}
-				printf("sum for file %s: %d\n", argv[j],sum);
+				if (no_errors == 0){
+					printf("sum for file %s: %d\n", argv[j],sum);
+				}
 			}
 		}
 	}
 	return 0;
+}
+
+int verify_format(char xx[]){
+	int i=0;
+	while (xx[i] != '\0'){
+		//printf("mot %s, char %d", xx, xx[i]);
+		if (xx[i]<48 || xx[i]>57){
+			fprintf(stderr, "Wrong format\n");
+			return 0;
+		}
+		i++;
+	}
+	return 1;
 }
