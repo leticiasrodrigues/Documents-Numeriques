@@ -4,7 +4,7 @@
 int main (int argc, char *argv[])
 {
 	if (argc == 1){
-		printf("No arguments");
+		printf("No arguments\n");
 	} else {
 		int j = 1;
 		FILE *fp;
@@ -15,30 +15,12 @@ int main (int argc, char *argv[])
 			} else {
 				char buff[255];
 				int sum = 0;
-				while(1){
-					if(fscanf(fp, "%s", buff) != EOF){
-						sum+=get_number_for_string(buff);
-						printf("teste: %s\n", buff);
-					}else{
-						break;
-					}
+				while(fscanf(fp, "%s", buff) != EOF){
+					sum+=atoi(buff);
 				}
-				printf("sum %d\n", sum);
+				printf("sum for file %s: %d\n", argv[j],sum);
 			}
 		}
 	}
 	return 0;
-}
-
-int get_number_for_string(char num[]){
-	int num_ascii,final_number = 0, i = 0;
-	while (num[i]!='\0'){
-		num_ascii = num[i];
-		if (num_ascii<38 || num_ascii>47){
-			fprint(stderr, "Invalid data\n");
-		}else{
-			final_number = 10*final_number + atoi(num[i]);
-		}
-	}
-	return final_number;
 }
