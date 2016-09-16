@@ -4,9 +4,10 @@ echo $#
 echo $1
 echo $0blabla
 
-=0
+=1
 for f
 do
     echo $i:."$f".
-    =$(expr $i +1)
+    =$(expr $i + 1)
+
 done
