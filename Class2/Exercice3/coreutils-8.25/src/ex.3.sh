@@ -4,6 +4,6 @@
 x=$(ls | wc -l)
 
 ##Total number of arqs with . in the name
-y=$(ls | grep . | wc -l)
+y=$(ls | grep $1 | wc -l)
 
 echo $(expr $x - $y)
